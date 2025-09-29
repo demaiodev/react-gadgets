@@ -1,4 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, {
+  useState,
+  useMemo,
+  type ChangeEvent,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 
 interface User {
   id: string;
@@ -7,12 +13,14 @@ interface User {
 }
 
 function generateId(): string {
-  return crypto.randomUUID();
+  return window.crypto.randomUUID();
 }
 
 function formatName(str: string): string {
   if (!str) return "";
-  return str.charAt(0).toUpperCase() + str.slice(1);
+  const trimmed = str.trim();
+  if (!trimmed) return "";
+  return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
 }
 
 const SEED_USERS: User[] = [
@@ -31,11 +39,11 @@ export default function UserDirectory() {
 
   const handleCreate = () => {
     if (!firstName.trim() || !lastName.trim()) return;
-
+    const formattedFirstName = formatName(firstName);
+    const formattedLastName = formatName(lastName);
     const exists = users.some(
       (u) =>
-        u.firstName.toLowerCase() === firstName.toLowerCase().trim() &&
-        u.lastName.toLowerCase() === lastName.toLowerCase().trim()
+        u.firstName === formattedFirstName && u.lastName === formattedLastName
     );
 
     if (exists) {
@@ -47,8 +55,8 @@ export default function UserDirectory() {
       ...users,
       {
         id: generateId(),
-        firstName: formatName(firstName),
-        lastName: formatName(lastName),
+        firstName: formattedFirstName,
+        lastName: formattedLastName,
       },
     ]);
     reset();
@@ -98,20 +106,22 @@ export default function UserDirectory() {
   };
 
   const handleInputTextChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    setter: React.Dispatch<React.SetStateAction<string>>
+    e: ChangeEvent<HTMLInputElement>,
+    setter: Dispatch<SetStateAction<string>>
   ) => {
     setter(e.target.value);
   };
 
   const getListItemClasses = (user: User): string => {
     let classes =
-      "p-3 border-b border-gray-200 cursor-pointer transition-all duration-150 ease-in-out font-medium hover:bg-indigo-100";
+      "p-3 border-b border-gray-700 cursor-pointer transition-all duration-150 ease-in-out font-medium";
 
     if (selectedUser?.id === user.id) {
-      classes += " bg-indigo-600 text-white shadow-md hover:bg-indigo-700";
+      // Selected state: bright indigo
+      classes += " bg-indigo-600 text-white shadow-lg hover:bg-indigo-700";
     } else {
-      classes += " text-gray-800 bg-white";
+      // Unselected state: dark gray background, light text, slight hover effect
+      classes += " text-gray-200 bg-gray-800 hover:bg-gray-700";
     }
     return classes;
   };
@@ -121,11 +131,13 @@ export default function UserDirectory() {
   const isActionDisabled: boolean = selectedUser === null;
 
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-4xl border border-gray-200">
-        <h1 className="text-3xl font-extrabold text-gray-900 mb-6 text-center border-b pb-3 border-gray-200">
+    <div className="min-h-full flex items-center justify-center p-4">
+      <div className="bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-4xl border border-gray-700 text-gray-200">
+        {/* H1 Heading: Changed to text-indigo-100 */}
+        <h1 className="text-3xl font-extrabold text-indigo-100 mb-6 text-center border-b pb-3 border-gray-700">
           User Directory Manager
         </h1>
+
         <div className="mb-6">
           <input
             type="text"
@@ -134,13 +146,14 @@ export default function UserDirectory() {
             aria-label="search"
             value={searchText}
             onChange={(e) => handleInputTextChange(e, setSearchText)}
-            className="w-full p-3 border border-gray-300 rounded-xl shadow-inner focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 text-black"
+            className="w-full p-3 border border-gray-600 rounded-xl shadow-inner focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 text-gray-200 bg-gray-900 placeholder-gray-400"
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* User List Panel */}
           <div
             id="name-list-container"
-            className="md:col-span-1 bg-gray-50 border border-gray-200 rounded-xl overflow-hidden shadow-lg h-96 overflow-y-auto"
+            className="md:col-span-1 bg-gray-900 border border-gray-600 rounded-xl overflow-hidden shadow-xl h-96 overflow-y-auto"
           >
             {filteredUsers.length > 0 ? (
               filteredUsers.map((user) => (
@@ -153,23 +166,26 @@ export default function UserDirectory() {
                 </div>
               ))
             ) : (
-              <p className="p-4 text-center text-gray-500 italic">
+              <p className="p-4 text-center text-gray-400 italic">
                 No users found.
               </p>
             )}
           </div>
+
+          {/* Controls Panel */}
           <div className="md:col-span-2 space-y-6">
             <div
               id="name-text-field-container"
-              className="space-y-4 p-4 border border-gray-200 rounded-xl shadow-inner bg-white"
+              className="space-y-4 p-6 border border-gray-700 rounded-xl shadow-lg bg-gray-700"
             >
-              <h2 className="text-xl font-semibold text-gray-700">
+              {/* H2 Heading: Changed to text-indigo-100 */}
+              <h2 className="text-xl font-semibold text-indigo-100">
                 User Details
               </h2>
               <div>
                 <label
                   htmlFor="first-name"
-                  className="block text-sm font-medium text-gray-600 mb-1"
+                  className="block text-sm font-medium text-gray-300 mb-1"
                 >
                   First Name
                 </label>
@@ -179,13 +195,13 @@ export default function UserDirectory() {
                   aria-label="first-name"
                   value={firstName}
                   onChange={(e) => handleInputTextChange(e, setFirstName)}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-indigo-500 text-black"
+                  className="w-full p-3 border border-gray-600 rounded-lg focus:ring-1 focus:ring-indigo-500 text-gray-200 bg-gray-900"
                 />
               </div>
               <div>
                 <label
                   htmlFor="last-name"
-                  className="block text-sm font-medium text-gray-600 mb-1"
+                  className="block text-sm font-medium text-gray-300 mb-1"
                 >
                   Last Name
                 </label>
@@ -195,20 +211,22 @@ export default function UserDirectory() {
                   aria-label="last-name"
                   value={lastName}
                   onChange={(e) => handleInputTextChange(e, setLastName)}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-indigo-500 text-black"
+                  className="w-full p-3 border border-gray-600 rounded-lg focus:ring-1 focus:ring-indigo-500 text-gray-200 bg-gray-900"
                 />
               </div>
             </div>
+
+            {/* Action Buttons (Removed hover transforms) */}
             <div
               id="button-group"
-              className="flex flex-wrap gap-4 justify-end pt-4 border-t border-gray-200"
+              className="flex flex-wrap gap-4 justify-end pt-4"
             >
               <button
                 disabled={isCreateDisabled}
                 onClick={handleCreate}
                 className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 shadow-md ${
                   isCreateDisabled
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    ? "bg-gray-600 text-gray-400 cursor-not-allowed"
                     : "bg-green-600 text-white hover:bg-green-700 active:bg-green-800"
                 }`}
               >
@@ -219,7 +237,7 @@ export default function UserDirectory() {
                 onClick={handleUpdate}
                 className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 shadow-md ${
                   isActionDisabled
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    ? "bg-gray-600 text-gray-400 cursor-not-allowed"
                     : "bg-indigo-600 text-white hover:bg-indigo-700 active:bg-indigo-800"
                 }`}
               >
@@ -230,7 +248,7 @@ export default function UserDirectory() {
                 onClick={handleDelete}
                 className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 shadow-md ${
                   isActionDisabled
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    ? "bg-gray-600 text-gray-400 cursor-not-allowed"
                     : "bg-red-600 text-white hover:bg-red-700 active:bg-red-800"
                 }`}
               >
@@ -243,8 +261,8 @@ export default function UserDirectory() {
                 onClick={reset}
                 className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 shadow-md ${
                   isActionDisabled && !firstName.trim() && !lastName.trim()
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300"
+                    ? "bg-gray-600 text-gray-400 cursor-not-allowed"
+                    : "bg-gray-500 text-white hover:bg-gray-600 active:bg-gray-700"
                 }`}
               >
                 Cancel

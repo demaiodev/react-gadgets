@@ -125,7 +125,7 @@ const Controls: React.FC<ControlsProps> = ({
     <div className="flex flex-col space-y-4 mx-8">
       <button
         onClick={() => handleMoveAll(listB, listA, setListB, setListA)}
-        className={`${baseButtonClass} bg-red-600 hover:bg-red-700`}
+        className={`${baseButtonClass} bg-gray-600 hover:bg-gray-700`}
         disabled={Object.keys(listB).length === 0}
         aria-label="Move all items from Frameworks to Fundamentals"
       >
@@ -155,7 +155,7 @@ const Controls: React.FC<ControlsProps> = ({
       </button>
       <button
         onClick={() => handleMoveAll(listA, listB, setListA, setListB)}
-        className={`${baseButtonClass} bg-red-600 hover:bg-red-700`}
+        className={`${baseButtonClass} bg-gray-600 hover:bg-gray-700`}
         disabled={Object.keys(listA).length === 0}
         aria-label="Move all items from Fundamentals to Frameworks"
       >
@@ -173,7 +173,7 @@ export default function TransferList() {
 
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-extrabold text-indigo-400 mb-8 drop-shadow-black drop-shadow-sm">
+      <h1 className="text-4xl font-extrabold text-indigo-100 mb-8 drop-shadow-black drop-shadow-sm">
         Transfer Lists
       </h1>
       <div className="flex justify-center items-stretch sm:items-center w-full max-w-4xl p-6 bg-gray-900 rounded-2xl">
