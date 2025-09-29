@@ -154,7 +154,7 @@ export default function Counter() {
         <hr className="border-gray-700" />
         <div className="flex justify-between items-center px-4" id="effects">
           <EffectButton
-            text={"/2"}
+            text={"÷2"}
             callbackFn={() =>
               dispatch({
                 type: "halve",
@@ -188,7 +188,7 @@ export default function Counter() {
             }
           />
           <EffectButton
-            text={"x2"}
+            text={"×2"}
             callbackFn={() =>
               dispatch({
                 type: "double",
