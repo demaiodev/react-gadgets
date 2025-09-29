@@ -86,7 +86,7 @@ const EffectButton: React.FC<EffectButtonProps> = ({
   isControl = false,
 }) => {
   const baseClasses =
-    "flex items-center justify-center space-x-2 font-semibold transition-all duration-200 rounded-lg shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed";
+    "flex items-center justify-center space-x-2 font-semibold transition-all duration-200 rounded-lg shadow-sm hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed";
 
   const controlClasses =
     "bg-gray-700 hover:bg-gray-600 text-white w-24 py-2 border-b-4 border-gray-800 hover:border-indigo-500";
@@ -113,14 +113,14 @@ export default function Counter() {
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
       <div className="bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-lg space-y-6 border border-gray-700">
-        <h1 className="text-4xl font-extrabold text-center text-indigo-400 drop-shadow-black drop-shadow-md">
+        <h1 className="text-4xl font-extrabold text-center text-indigo-100 drop-shadow-black drop-shadow-sm">
           Undoable Counter
         </h1>
         <div className="text-center p-6 bg-gray-900 rounded-xl shadow-inner border border-indigo-500">
           <h2 className="text-xl font-medium text-gray-400 mb-1">
             Current Value
           </h2>
-          <span className="text-7xl font-extrabold text-indigo-400 block break-words">
+          <span className="text-7xl font-extrabold text-indigo-100 block break-words">
             {currentVal.toFixed(3).replace(/\.000$/, "")}
           </span>
         </div>

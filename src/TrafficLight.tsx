@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { CirclePlus } from "lucide-react";
 
 type LightColor = "red" | "yellow" | "green";
 
@@ -29,11 +30,28 @@ const lights: LightsState = {
 };
 
 export default function TrafficLight() {
-  //todo: handle adding additional lights in varying layouts
+  const [amount, setAmount] = useState<number>(1);
   return (
-    <div>
-      <Light />
-    </div>
+    <>
+      <div className=" bg-gray-900 flex flex-col items-center justify-center p-4">
+        <h1 className="text-4xl font-extrabold text-indigo-100 drop-shadow-black drop-shadow-sm">
+          Traffic Light
+        </h1>
+        <button
+          onClick={() => setAmount(amount + 1)}
+          className="flex w-45 justify-around items-center mt-8 px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-lg font-semibold rounded-full shadow-lg transition-transform duration-150 transform active:scale-95 disabled:bg-gray-600 disabled:cursor-not-allowed"
+        >
+          <CirclePlus /> Add light
+        </button>
+        <div className="flex items-center justify-center w-min m-6">
+          {Array.from({ length: amount }).map((_, index) => (
+            <div>
+              <Light key={index} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -65,27 +83,22 @@ function Light() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
-      <div className="flex flex-col items-center">
-        <h1 className="text-3xl font-extrabold text-indigo-400 mb-6 drop-shadow-black drop-shadow-md">
-          Traffic Light
-        </h1>
-        <div className="bg-gray-800 p-3 rounded-2xl flex flex-col items-center shadow-2xl space-y-3 border-4 border-gray-600">
-          {(Object.keys(lights) as LightColor[]).map((color) => {
-            return (
-              <div
-                key={color}
-                className={`
+    <div className="flex flex-col items-center m-2">
+      <div className="bg-gray-800 p-3 rounded-2xl flex flex-col items-center shadow-2xl space-y-3 border-4 border-gray-600">
+        {(Object.keys(lights) as LightColor[]).map((color) => {
+          return (
+            <div
+              key={color}
+              className={`
                                 w-20 h-20 rounded-full 
                                 transition-all duration-300 ease-in-out 
                                 shadow-lg
                                 ${getLightClass(color)}
                                 ${currentLight === color ? "shadow-2xl" : ""}
                             `}
-              ></div>
-            );
-          })}
-        </div>
+            ></div>
+          );
+        })}
       </div>
     </div>
   );

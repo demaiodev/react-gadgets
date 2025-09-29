@@ -173,10 +173,10 @@ export default function TransferList() {
 
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-extrabold text-indigo-400 mb-8 drop-shadow-black drop-shadow-md">
+      <h1 className="text-4xl font-extrabold text-indigo-400 mb-8 drop-shadow-black drop-shadow-sm">
         Transfer Lists
       </h1>
-      <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center w-full max-w-4xl p-6 bg-gray-900 rounded-2xl">
+      <div className="flex justify-center items-stretch sm:items-center w-full max-w-4xl p-6 bg-gray-900 rounded-2xl">
         <List list={listA} setList={setListA} title="Fundamentals" />
         <Controls
           setListA={setListA}

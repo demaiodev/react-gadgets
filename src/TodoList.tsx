@@ -64,7 +64,7 @@ export default function TodoList() {
   return (
     <div className={mainContainerClasses}>
       <div className={cardClasses}>
-        <h1 className="text-2xl font-extrabold text-center text-indigo-400 flex items-center justify-between space-x-3 drop-shadow-black drop-shadow-md">
+        <h1 className="text-2xl font-extrabold text-center text-indigo-100 flex items-center justify-between space-x-3 drop-shadow-black drop-shadow-sm">
           <ListTodo className="w-8 h-8 text-white" />
           <span className="text-green-700 ">// TODO: Finish List</span>
         </h1>
@@ -97,7 +97,7 @@ export default function TodoList() {
                   {item.completed ? (
                     <CheckCircle className="w-6 h-6 text-green-400" />
                   ) : (
-                    <Circle className="w-6 h-6 text-indigo-400" />
+                    <Circle className="w-6 h-6 text-indigo-100" />
                   )}
                 </button>
                 <span

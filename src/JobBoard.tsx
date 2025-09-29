@@ -65,7 +65,7 @@ const Post = ({ id }: { id: number }) => {
         href={jobData.url || `https://news.ycombinator.com/item?id=${id}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-lg font-bold text-white hover:text-indigo-400 transition-colors duration-150 block mb-2"
+        className="text-lg font-bold text-white hover:text-indigo-100 transition-colors duration-150 block mb-2"
       >
         {jobData.title}
       </a>
@@ -104,13 +104,13 @@ export default function JobBoard() {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex justify-center p-4 sm:p-8">
       <main className="w-full max-w-2xl flex flex-col space-y-4">
-        <h1 className="text-4xl font-extrabold text-indigo-400 mb-4 border-b-2 border-indigo-500 pb-2 drop-shadow-black drop-shadow-md">
+        <h1 className="text-4xl font-extrabold text-indigo-100 mb-4 border-b-2 border-indigo-500 pb-2 drop-shadow-black drop-shadow-sm">
           Hacker News Job Board
         </h1>
         {loadingInitial && (
           <div className="text-center py-10">
             <svg
-              className="animate-spin h-8 w-8 text-indigo-400 mx-auto"
+              className="animate-spin h-8 w-8 text-indigo-100 mx-auto"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

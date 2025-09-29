@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
+
 import UserDirectory from "./UserDirectory";
 import TrafficLight from "./TrafficLight";
 import Stopwatch from "./Stopwatch";
@@ -29,27 +31,36 @@ const APP_ROUTES = [
 
 const Home = () => (
   <div className="flex flex-col items-center justify-center h-full p-8 text-gray-300">
-    <h1 className="text-5xl font-extrabold text-indigo-400 mb-4 drop-shadow-black drop-shadow-md">
-      React App Portfolio
+    <h1 className="text-5xl font-extrabold text-indigo-100 mb-4 ">
+      Hi. My name is{" "}
+      <a
+        href="https://github.com/demaiodev"
+        className="text-indigo-500 hover:underline hover:text-indigo-300"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Chris
+      </a>
+      .
     </h1>
     <p className="text-xl mb-8 text-center ">
-      <span className="w-5 h-5">
-        Select an application from the sidebar to view its implementation.
-      </span>
+      Select a project from the sidebar to view its implementation.
     </p>
     <div className="text-center text-gray-400">
       <p className="mb-2">
-        This portfolio showcases various React applications demonstrating
-        different functionalities and UI components.
+        Built with React, TypeScript, Vite, and Tailwind CSS.
       </p>
       <p className="mb-2">
-        Built with React, TypeScript, and Tailwind CSS by{" "}
+        Source code for each project is available{" "}
         <a
-          href="https://github.com/demaiodev"
-          className="text-indigo-400 hover:underline"
+          href="https://github.com/demaiodev/react-gadgets/tree/main/src"
+          className="text-indigo-300 hover:underline hover:text-indigo-100"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Chris
+          here
         </a>
+        .
       </p>
     </div>
   </div>
@@ -57,6 +68,12 @@ const Home = () => (
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState("home");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const handleNavigate = (path: string) => {
+    setCurrentPath(path);
+    setIsSidebarOpen(false);
+  };
 
   const renderComponent = () => {
     if (currentPath === "home") {
@@ -79,48 +96,74 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col md:flex-row">
-      {/* Navigation Sidebar */}
-      <nav className="flex-shrink-0 w-full md:w-64 bg-gray-800 p-4 border-r border-gray-700 shadow-xl md:min-h-screen">
-        <h1 className="text-2xl font-bold text-indigo-400 mb-6 border-b pb-3 border-gray-700 drop-shadow-black drop-shadow-md">
-          My Projects
-        </h1>
+    <div className="min-h-screen bg-gray-900 text-white flex">
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        className="fixed bottom-4 left-4 z-30 p-4 md:hidden bg-indigo-600 rounded-lg shadow-lg text-white"
+        aria-label={isSidebarOpen ? "Close Menu" : "Open Menu"}
+      >
+        {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
 
-        <ul className="space-y-2">
-          {/* Home Link */}
-          <li>
-            <button
-              onClick={() => setCurrentPath("home")}
-              className={`w-full text-left p-3 rounded-lg font-semibold transition-colors duration-200 ${
-                currentPath === "home"
-                  ? "bg-indigo-600 text-white shadow-lg"
-                  : "text-gray-300 hover:bg-gray-700"
-              }`}
-            >
-              Home
-            </button>
-          </li>
-          {/* App Links generated from APP_ROUTES */}
-          {APP_ROUTES.map((route) => (
-            <li key={route.path}>
+      {/* Navigation Sidebar */}
+      <nav
+        className={`
+          flex-shrink-0 w-64 bg-gray-800 p-4 border-r border-gray-700 shadow-xl 
+          min-h-screen z-20 transition-transform duration-300 ease-in-out
+          ${isSidebarOpen ? "translate-x-0 fixed" : "-translate-x-full fixed"}
+          md:static md:translate-x-0 md:flex
+        `}
+      >
+        <div className="flex flex-col w-full">
+          <h1 className="text-2xl font-bold text-indigo-100 mb-6 border-b pb-3 border-gray-700">
+            Projects
+          </h1>
+
+          <ul className="space-y-2">
+            {/* Home Link */}
+            <li>
               <button
-                onClick={() => setCurrentPath(route.path)}
-                className={`w-full text-left p-3 rounded-lg transition-colors duration-200 ${
-                  currentPath === route.path
-                    ? "bg-gray-700 text-green-400 font-bold"
+                onClick={() => handleNavigate("home")}
+                className={`w-full text-left p-3 rounded-lg font-semibold transition-colors duration-200 ${
+                  currentPath === "home"
+                    ? "bg-indigo-600 text-white shadow-lg"
                     : "text-gray-300 hover:bg-gray-700"
                 }`}
               >
-                {route.title}
+                Home
               </button>
             </li>
-          ))}
-        </ul>
+            {/* App Links generated from APP_ROUTES */}
+            {APP_ROUTES.map((route) => (
+              <li key={route.path}>
+                <button
+                  onClick={() => handleNavigate(route.path)}
+                  className={`w-full text-left p-3 rounded-lg transition-colors duration-200 ${
+                    currentPath === route.path
+                      ? "bg-gray-700 text-green-400 font-bold"
+                      : "text-gray-300 hover:bg-gray-700"
+                  }`}
+                >
+                  {route.title}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </nav>
 
+      {/* Content Overlay (to dim content when sidebar is open on mobile) */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 z-10 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        ></div>
+      )}
+
       {/* Main Content Area */}
-      <main className="flex-grow p-4 md:p-10 flex flex-col justify-center">
-        {renderComponent()}
+      <main className="flex-grow p-4 md:p-10 flex flex-col justify-center min-w-0">
+        <div className="mt-16 md:mt-0 w-full h-full">{renderComponent()}</div>
       </main>
     </div>
   );

@@ -64,7 +64,7 @@ export default function TempConverter() {
   return (
     <div className={mainContainerClasses}>
       <div className={cardClasses}>
-        <h1 className="text-4xl font-extrabold text-center text-indigo-400 drop-shadow-black drop-shadow-md">
+        <h1 className="text-4xl font-extrabold text-center text-indigo-100 drop-shadow-black drop-shadow-sm">
           Temperature Converter
         </h1>
         <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
@@ -90,7 +90,7 @@ export default function TempConverter() {
               </label>
             </div>
           </div>
-          <div className="text-4xl font-extrabold text-indigo-400">=</div>
+          <div className="text-4xl font-extrabold text-indigo-100">=</div>
           <div className={containerClasses}>
             <input
               id="fahrenheit"
