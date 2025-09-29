@@ -200,10 +200,7 @@ export default function Counter() {
           />
         </div>
         <hr className="border-gray-700" />
-        <h3 className="text-lg font-semibold text-gray-300 mb-2">
-          Operation History
-        </h3>
-        <div className="max-h-60 overflow-y-auto rounded-lg border border-gray-700">
+        <div className="max-h-60 overflow-y-auto rounded-lg border border-gray-700 text-center">
           <table
             className="min-w-full divide-y divide-gray-700"
             id="effect-history"
