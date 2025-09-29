@@ -141,7 +141,7 @@ export default function App() {
                   onClick={() => handleNavigate(route.path)}
                   className={`w-full text-left p-3 rounded-lg transition-colors duration-200 ${
                     currentPath === route.path
-                      ? "bg-gray-700 text-green-400 font-bold"
+                      ? "bg-indigo-100 text-gray-900 shadow-lg"
                       : "text-gray-300 hover:bg-gray-700"
                   }`}
                 >
