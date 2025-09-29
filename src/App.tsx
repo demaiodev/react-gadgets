@@ -31,7 +31,7 @@ const APP_ROUTES = [
 
 const Home = () => (
   <div className="flex flex-col items-center justify-center h-full p-8 text-gray-300">
-    <h1 className="text-5xl font-extrabold text-indigo-100 mb-4 ">
+    <h1 className="text-2xl font-extrabold text-indigo-100 mb-4 md:text-5xl">
       Hi. My name is{" "}
       <a
         href="https://github.com/demaiodev"
@@ -100,7 +100,7 @@ export default function App() {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="fixed bottom-4 left-4 z-30 p-4 md:hidden bg-indigo-600 rounded-lg shadow-lg text-white"
+        className="fixed top-4 right-4 z-30 p-4 md:hidden bg-indigo-600 rounded-lg shadow-lg text-white"
         aria-label={isSidebarOpen ? "Close Menu" : "Open Menu"}
       >
         {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
