@@ -53,7 +53,7 @@ export default function TempConverter() {
   const inputClasses =
     "w-full p-4 text-3xl font-mono text-white bg-gray-700 border-2 border-indigo-500 rounded-xl focus:ring-4 focus:ring-indigo-500/50 outline-none transition-all duration-200 shadow-xl";
   const labelClasses =
-    "text-gray-300 text-lg font-semibold absolute top-[-10px] left-4 px-2 bg-gray-800";
+    "text-gray-300 text-lg font-semibold absolute top-[-10px] left-4 px-2 bg-gray-800 border rounded border-gray-500";
   const containerClasses =
     "relative bg-gray-800 p-2 rounded-xl shadow-lg flex-1 w-full";
   const mainContainerClasses =
@@ -64,7 +64,7 @@ export default function TempConverter() {
   return (
     <div className={mainContainerClasses}>
       <div className={cardClasses}>
-        <h1 className="text-4xl font-extrabold text-center text-indigo-400">
+        <h1 className="text-4xl font-extrabold text-center text-indigo-400 drop-shadow-black drop-shadow-md">
           Temperature Converter
         </h1>
         <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">

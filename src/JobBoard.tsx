@@ -104,7 +104,7 @@ export default function JobBoard() {
   return (
     <div className="min-h-screen bg-gray-900 text-white flex justify-center p-4 sm:p-8">
       <main className="w-full max-w-2xl flex flex-col space-y-4">
-        <h1 className="text-4xl font-extrabold text-indigo-400 mb-4 border-b-2 border-indigo-500 pb-2">
+        <h1 className="text-4xl font-extrabold text-indigo-400 mb-4 border-b-2 border-indigo-500 pb-2 drop-shadow-black drop-shadow-md">
           Hacker News Job Board
         </h1>
         {loadingInitial && (

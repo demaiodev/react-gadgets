@@ -88,7 +88,7 @@ export default function TicTacToe() {
 
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-4">
-      <h1 className="text-5xl font-extrabold text-indigo-400 mb-4 tracking-wider">
+      <h1 className="text-5xl font-extrabold text-indigo-400 mb-4 tracking-wider drop-shadow-black drop-shadow-md">
         Tic-Tac-Toe
       </h1>
       <h4 className={`text-2xl font-semibold mb-8 ${getStatusColorClass()}`}>

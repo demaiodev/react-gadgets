@@ -12,9 +12,10 @@ function getId(): string {
 }
 
 const START_ITEMS: TodoItem[] = [
-  { id: getId(), text: "Plan the day", completed: false },
+  { id: getId(), text: "Pet the dog (Charlie)", completed: false },
   { id: getId(), text: "Check email", completed: true },
-  { id: getId(), text: "Finish React app review", completed: false },
+  { id: getId(), text: "Standup updates", completed: false },
+  { id: getId(), text: "PR reviews", completed: false },
 ];
 
 export default function TodoList() {
@@ -57,18 +58,15 @@ export default function TodoList() {
     "w-full p-3 text-lg text-white bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all duration-200";
   const buttonClasses =
     "p-3 font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors duration-200 shadow-md flex-shrink-0";
-  // Updated delete button to be icon-friendly
   const deleteButtonClasses =
     "p-2 ml-4 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200 shadow-sm flex items-center justify-center";
 
   return (
     <div className={mainContainerClasses}>
       <div className={cardClasses}>
-        <h1 className="text-4xl font-extrabold text-center text-indigo-400 flex items-center justify-between space-x-3">
+        <h1 className="text-2xl font-extrabold text-center text-indigo-400 flex items-center justify-between space-x-3 drop-shadow-black drop-shadow-md">
           <ListTodo className="w-8 h-8 text-white" />
-          <span>
-            <span className="text-white mr-2">//</span>TODO: List
-          </span>
+          <span className="text-green-700 ">// TODO: Finish List</span>
         </h1>
         <form onSubmit={handleAddTodo} className="flex space-x-3">
           <input

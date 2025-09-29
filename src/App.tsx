@@ -19,7 +19,7 @@ const APP_ROUTES = [
     component: TempConverter,
   },
   { path: "counter", title: "Counter", component: Counter },
-  { path: "transfer-list", title: "Transfer List", component: TransferList },
+  { path: "transfer-list", title: "Transfer Lists", component: TransferList },
   { path: "job-board", title: "Job Board", component: JobBoard },
   { path: "tic-tac-toe", title: "Tic Tac Toe", component: TicTacToe },
   { path: "stopwatch", title: "Stopwatch", component: Stopwatch },
@@ -29,11 +29,13 @@ const APP_ROUTES = [
 
 const Home = () => (
   <div className="flex flex-col items-center justify-center h-full p-8 text-gray-300">
-    <h1 className="text-5xl font-extrabold text-indigo-400 mb-4">
+    <h1 className="text-5xl font-extrabold text-indigo-400 mb-4 drop-shadow-black drop-shadow-md">
       React App Portfolio
     </h1>
-    <p className="text-xl mb-8 text-center">
-      Select an application from the sidebar to view its implementation.
+    <p className="text-xl mb-8 text-center ">
+      <span className="w-5 h-5">
+        Select an application from the sidebar to view its implementation.
+      </span>
     </p>
     <div className="text-center text-gray-400">
       <p className="mb-2">
@@ -80,7 +82,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-900 text-white flex flex-col md:flex-row">
       {/* Navigation Sidebar */}
       <nav className="flex-shrink-0 w-full md:w-64 bg-gray-800 p-4 border-r border-gray-700 shadow-xl md:min-h-screen">
-        <h1 className="text-2xl font-bold text-indigo-400 mb-6 border-b pb-3 border-gray-700">
+        <h1 className="text-2xl font-bold text-indigo-400 mb-6 border-b pb-3 border-gray-700 drop-shadow-black drop-shadow-md">
           My Projects
         </h1>
 

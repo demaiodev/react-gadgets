@@ -123,7 +123,9 @@ export default function DiceRoller() {
       `}</style>
 
       <div className="flex flex-col items-center justify-center w-full max-w-md bg-gray-800 p-8 rounded-xl shadow-2xl space-y-6 mt-10 border border-gray-700">
-        <h1 className="text-4xl font-extrabold text-indigo-400">Dice Roller</h1>
+        <h1 className="text-4xl font-extrabold text-indigo-400 drop-shadow-black drop-shadow-md">
+          Dice Roller
+        </h1>
 
         <form className="flex flex-col w-full space-y-4" onSubmit={handleRoll}>
           <label
@@ -145,7 +147,7 @@ export default function DiceRoller() {
             type="submit"
             className="p-3 font-bold text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 transition-colors duration-200"
           >
-            Roll!
+            Roll
           </button>
         </form>
 

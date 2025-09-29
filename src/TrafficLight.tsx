@@ -67,7 +67,7 @@ function Light() {
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
       <div className="flex flex-col items-center">
-        <h1 className="text-3xl font-extrabold text-indigo-400 mb-6">
+        <h1 className="text-3xl font-extrabold text-indigo-400 mb-6 drop-shadow-black drop-shadow-md">
           Traffic Light
         </h1>
         <div className="bg-gray-800 p-3 rounded-2xl flex flex-col items-center shadow-2xl space-y-3 border-4 border-gray-600">
