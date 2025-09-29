@@ -32,8 +32,8 @@ const lights: LightsState = {
 export default function TrafficLight() {
   const [amount, setAmount] = useState<number>(1);
   return (
-    <>
-      <div className=" bg-gray-900 flex flex-col items-center justify-center p-4">
+    <div className="flex justify-center items-center h-150">
+      <div className="bg-gray-900 flex flex-col items-center justify-center p-4 mt-auto">
         <h1 className="text-4xl font-extrabold text-indigo-100 drop-shadow-black drop-shadow-sm">
           Traffic Light
         </h1>
@@ -51,7 +51,7 @@ export default function TrafficLight() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
