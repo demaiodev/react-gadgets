@@ -4,6 +4,7 @@ const Dice = ({ value }: { value: number }) => {
   return (
     <div className={`dice dice-${value}`}>
       {Array.from({ length: 9 }).map((_, i) => (
+        // Each dot is given a number (1-9) which corresponds to its grid position defined in CSS
         <div key={i} className={`dice-dot dot-${i + 1}`}></div>
       ))}
     </div>
@@ -60,7 +61,6 @@ export default function DiceRoller() {
           position: relative;
           user-select: none;
         }
-
         .dice-dot {
           background-color: #333;
           width: 12px;
@@ -68,58 +68,23 @@ export default function DiceRoller() {
           border-radius: 50%;
           justify-self: center;
           align-self: center;
-          opacity: 0;
+          opacity: 0; 
         }
-
-        .dot-1 { grid-area: 3 / 1; } 
-        .dot-2 { grid-area: 2 / 1; } 
-        .dot-3 { grid-area: 1 / 1; } 
-        .dot-4 { grid-area: 1 / 2; } 
-        .dot-5 { grid-area: 3 / 3; } 
-        .dot-6 { grid-area: 2 / 3; } 
-        .dot-7 { grid-area: 1 / 3; } 
-        .dot-8 { grid-area: 2 / 2; } 
-        .dot-9 { grid-area: 3 / 2; } 
-
+        .dot-1 { grid-area: 3 / 1; }
+        .dot-2 { grid-area: 2 / 1; }
+        .dot-3 { grid-area: 1 / 1; }
+        .dot-4 { grid-area: 1 / 2; }
+        .dot-5 { grid-area: 3 / 3; }
+        .dot-6 { grid-area: 2 / 3; }
+        .dot-7 { grid-area: 1 / 3; }
+        .dot-8 { grid-area: 2 / 2; }
+        .dot-9 { grid-area: 3 / 2; }
         .dice-1 .dot-8 { opacity: 1; }
-        
         .dice-2 .dot-3, .dice-2 .dot-5 { opacity: 1; }
-
         .dice-3 .dot-1, .dice-3 .dot-8, .dice-3 .dot-7 { opacity: 1; }
-
         .dice-4 .dot-1, .dice-4 .dot-3, .dice-4 .dot-5, .dice-4 .dot-7 { opacity: 1; }
-        
         .dice-5 .dot-1, .dice-5 .dot-3, .dice-5 .dot-5, .dice-5 .dot-7, .dice-5 .dot-8 { opacity: 1; }
-
         .dice-6 .dot-1, .dice-6 .dot-3, .dice-6 .dot-5, .dice-6 .dot-7, .dice-6 .dot-2, .dice-6 .dot-6 { opacity: 1; }
-
-        .dice-6 .dot-2 { grid-area: 2 / 1; opacity: 1; }
-        .dice-6 .dot-6 { grid-area: 2 / 3; opacity: 1; }
-        .dice-6 .dot-3 { grid-area: 1 / 1; opacity: 1; }
-        .dice-6 .dot-7 { grid-area: 1 / 3; opacity: 1; }
-        .dice-6 .dot-1 { grid-area: 3 / 1; opacity: 1; }
-        .dice-6 .dot-5 { grid-area: 3 / 3; opacity: 1; }
-        
-        .dice-1 .dot-8 { grid-area: 2 / 2; opacity: 1; }
-        
-        .dice-2 .dot-7 { grid-area: 1 / 3; opacity: 1; }
-        .dice-2 .dot-1 { grid-area: 3 / 1; opacity: 1; }
-
-        .dice-3 .dot-7 { grid-area: 1 / 3; opacity: 1; }
-        .dice-3 .dot-8 { grid-area: 2 / 2; opacity: 1; }
-        .dice-3 .dot-1 { grid-area: 3 / 1; opacity: 1; }
-
-        .dice-4 .dot-3 { grid-area: 1 / 1; opacity: 1; }
-        .dice-4 .dot-7 { grid-area: 1 / 3; opacity: 1; }
-        .dice-4 .dot-1 { grid-area: 3 / 1; opacity: 1; }
-        .dice-4 .dot-5 { grid-area: 3 / 3; opacity: 1; }
-        
-        .dice-5 .dot-3 { grid-area: 1 / 1; opacity: 1; }
-        .dice-5 .dot-7 { grid-area: 1 / 3; opacity: 1; }
-        .dice-5 .dot-8 { grid-area: 2 / 2; opacity: 1; }
-        .dice-5 .dot-1 { grid-area: 3 / 1; opacity: 1; }
-        .dice-5 .dot-5 { grid-area: 3 / 3; opacity: 1; }
-        
       `}</style>
 
       <div className="flex flex-col items-center justify-center w-full max-w-md bg-gray-800 p-8 rounded-xl shadow-2xl space-y-6 mt-10 border border-gray-700">
@@ -130,7 +95,7 @@ export default function DiceRoller() {
         <form className="flex flex-col w-full space-y-4" onSubmit={handleRoll}>
           <label
             htmlFor="dice-roll-input"
-            className="text-lg font-medium text-gray-300 hidden"
+            className="text-lg font-medium text-gray-300 sr-only"
           >
             Number of Dice (1-12)
           </label>
@@ -142,10 +107,11 @@ export default function DiceRoller() {
             max="12"
             value={numberOfDice}
             onChange={handleAmountChange}
+            aria-label="Number of dice to roll (1 to 12)"
           />
           <button
             type="submit"
-            className="p-3 font-bold text-white bg-green-600 rounded-lg shadow-sm hover:bg-green-700 transition-colors duration-200"
+            className="p-3 font-bold text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 transition-colors duration-200"
           >
             Roll
           </button>
