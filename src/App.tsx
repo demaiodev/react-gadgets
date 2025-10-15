@@ -13,26 +13,26 @@ import TodoList from "./TodoList";
 import DiceRoller from "./DiceRoller";
 
 const APP_ROUTES = [
-  { path: "dice-roller", title: "Dice Roller", component: DiceRoller },
+  { path: "user-directory", title: "User Directory", component: UserDirectory },
+  { path: "counter", title: "Fancy Counter", component: Counter },
   { path: "todo-list", title: "Todo List", component: TodoList },
   {
     path: "temp-converter",
-    title: "Temperature Converter",
+    title: "Temp. Converter",
     component: TempConverter,
   },
-  { path: "counter", title: "Counter", component: Counter },
   { path: "transfer-list", title: "Transfer Lists", component: TransferList },
   { path: "job-board", title: "Job Board", component: JobBoard },
   { path: "tic-tac-toe", title: "Tic Tac Toe", component: TicTacToe },
+  { path: "dice-roller", title: "Dice Roller", component: DiceRoller },
   { path: "stopwatch", title: "Stopwatch", component: Stopwatch },
   { path: "traffic-light", title: "Traffic Light", component: TrafficLight },
-  { path: "user-directory", title: "User Directory", component: UserDirectory },
 ];
 
 const Home = () => (
   <div className="flex flex-col items-center justify-center h-full p-8 text-gray-300">
-    <h1 className="text-2xl font-extrabold text-indigo-100 mb-4 md:text-5xl">
-      Hi. My name is{" "}
+    <h1 className="text-2xl font-extrabold text-indigo-100 mb-4 md:text-5xl text-center">
+      React Components made by{" "}
       <a
         href="https://github.com/demaiodev"
         className="text-indigo-500 hover:underline hover:text-indigo-300"
@@ -44,14 +44,14 @@ const Home = () => (
       .
     </h1>
     <p className="text-xl mb-8 text-center ">
-      Select a project from the sidebar to view its implementation.
+      Select a component from the menu to view it.
     </p>
     <div className="text-center text-gray-400">
       <p className="mb-2">
-        Built with React, TypeScript, Vite, and Tailwind CSS.
+        Built with React, TypeScript, Vite, and styled with Tailwind CSS.
       </p>
       <p className="mb-2">
-        Source code for each project is available{" "}
+        Source code for each component is available{" "}
         <a
           href="https://github.com/demaiodev/react-gadgets/tree/main/src"
           className="text-indigo-300 hover:underline hover:text-indigo-100"
@@ -117,7 +117,7 @@ export default function App() {
       >
         <div className="flex flex-col w-full">
           <h1 className="text-2xl font-bold text-indigo-100 mb-6 border-b pb-3 border-gray-700">
-            Projects
+            Components
           </h1>
 
           <ul className="space-y-2">
